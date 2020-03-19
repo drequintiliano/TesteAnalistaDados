@@ -1,0 +1,38 @@
+/*
+1. Quantos usuários únicos não jogaram após o dia 03/02/2020?
+2. Quantos usuários únicos jogaram em fevereiro após o dia 06/02/2020?
+3. Em qual dia mais jogadores deixaram de jogar no mês de fevereiro?
+*/
+
+/*exercicio 1*/
+select 
+	distinct count(A.player_id) as Quantidade
+from matchmaking_stats_summary A
+where
+	A.updated_at < '2020/02/03'
+    
+/*exercicio 2*/
+select 
+	distinct count(A.player_id) as Quantidade
+from matchmaking_stats_summary A
+where
+	month(A.updated_at) = 2 and
+	A.updated_at > '2020/02/06'
+    
+ select *
+from matchmaking_stats_summary A   
+   
+/*exercicio 3*/
+select 
+	dayname(A.updated_at) as Dia,
+	date_format(A.updated_at, '%d/%c/%Y') as Data,
+  count(A.player_id) as 'Menor nº de Players'
+from matchmaking_stats_summary A
+where
+	month(A.updated_at) = 2
+group by
+	day(A.updated_at)
+order by     
+	count(*) limit 1
+
+   
