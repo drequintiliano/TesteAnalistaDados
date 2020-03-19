@@ -18,15 +18,12 @@ from matchmaking_stats_summary A
 where
 	month(A.updated_at) = 2 and
 	A.updated_at > '2020/02/06'
-    
- select *
-from matchmaking_stats_summary A   
-   
+ 
 /*exercicio 3*/
 select 
 	dayname(A.updated_at) as Dia,
 	date_format(A.updated_at, '%d/%c/%Y') as Data,
-  count(A.player_id) as 'Menor nº de Players'
+  	count(A.player_id) as 'Menor nº de Players'
 from matchmaking_stats_summary A
 where
 	month(A.updated_at) = 2
